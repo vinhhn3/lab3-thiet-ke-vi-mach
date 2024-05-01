@@ -4,8 +4,7 @@ USE ieee.std_logic_1164.ALL;
 
 ENTITY moore_101_detector IS
 
-  PORT
-  (
+  PORT (
     clk            : IN STD_LOGIC;
     rst_n          : IN STD_LOGIC;
     data_in        : IN STD_LOGIC;
@@ -26,7 +25,7 @@ BEGIN -- behavioral
   -- inputs : clk, rst_n, next_state
   -- outputs: current_state
   REG : PROCESS (clk, rst_n)
-  BEGIN -- PROCESS REG
+  BEGIN               -- PROCESS REG
     IF rst_n = '0' THEN -- asynchronous reset (active low)
       current_state <= IDLE;
     ELSIF clk'EVENT AND clk = '1' THEN -- rising clock edge
@@ -45,25 +44,25 @@ BEGIN -- behavioral
       WHEN IDLE =>
         IF data_in = '1' THEN
           next_state <= GOT1;
-        ELSE
+        ELSIF data_in = '0' THEN
           next_state <= IDLE;
         END IF;
       WHEN GOT1 =>
         IF data_in = '0' THEN
           next_state <= GOT10;
-        ELSE
-          next_state <= IDLE;
+        ELSIF data_in = '1' THEN
+          next_state <= GOT1;
         END IF;
       WHEN GOT10 =>
         IF data_in = '1' THEN
           next_state <= GOT101;
-        ELSE
+        ELSIF data_in = '0' THEN
           next_state <= GOT10;
         END IF;
       WHEN GOT101 =>
         IF data_in = '1' THEN
           next_state <= GOT101;
-        ELSE
+        ELSIF data_in = '0' THEN
           next_state <= IDLE;
         END IF;
       WHEN OTHERS => NULL;

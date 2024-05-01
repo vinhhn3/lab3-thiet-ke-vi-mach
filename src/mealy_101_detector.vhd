@@ -64,19 +64,19 @@ BEGIN -- behavioral
       WHEN IDLE =>
         IF data_in = '1' THEN
           next_state <= GOT1;
-        ELSE
+        ELSIF data_in = '0' THEN
           next_state <= IDLE;
         END IF;
       WHEN GOT1 =>
         IF data_in = '0' THEN
           next_state <= GOT10;
-        ELSE
+        ELSIF data_in = '1' THEN
           next_state <= GOT1;
         END IF;
       WHEN GOT10 =>
         IF data_in = '0' THEN
           next_state <= GOT10;
-        ELSE
+        ELSIF data_in = '1' THEN
           next_state <= IDLE;
         END IF;
       WHEN OTHERS => NULL;
