@@ -30,13 +30,12 @@ BEGIN -- ARCHITECTURE test
       detect_101_out => moore_detect_101_out);
 
   MEALY_DUT : ENTITY work.mealy_101_detector
-    PORT
-    MAP
+    PORT MAP
     (
-    clk            => clk,
-    rst_n          => rst_n,
-    data_in        => data_in,
-    detect_101_out => mealy_detect_101_out
+      clk            => clk,
+      rst_n          => rst_n,
+      data_in        => data_in,
+      detect_101_out => mealy_detect_101_out
     );
   -- clock & reset generation
   clk_process : PROCESS

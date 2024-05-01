@@ -52,12 +52,12 @@ BEGIN -- ARCHITECTURE test
       detect_110_out => moore_detect_110_out);
 
   MEALY_DUT : ENTITY work.mealy_110_detector
-    PORT
-    MAP (
-    clk            => clk,
-    rst_n          => rst_n,
-    data_in        => data_in,
-    detect_110_out => mealy_detect_110_out);
+    PORT MAP
+    (
+      clk            => clk,
+      rst_n          => rst_n,
+      data_in        => data_in,
+      detect_110_out => mealy_detect_110_out);
 
   -- clock & reset generation
   clk_process : PROCESS
